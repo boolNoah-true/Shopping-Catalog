@@ -15,7 +15,7 @@
 
 using namespace std;
 Database::Database() {
-    cout <<  "run" << endl;
+    cout <<  "run two" << endl;
 }
 
 Database::Database(const Database& orig) {
