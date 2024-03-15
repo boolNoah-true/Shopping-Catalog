@@ -36,6 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Database.o \
+	${OBJECTDIR}/Item.o \
+	${OBJECTDIR}/ItemNode.o \
+	${OBJECTDIR}/User.o \
 	${OBJECTDIR}/main.o
 
 
@@ -67,6 +70,21 @@ ${OBJECTDIR}/Database.o: Database.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Database.o Database.cpp
+
+${OBJECTDIR}/Item.o: Item.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Item.o Item.cpp
+
+${OBJECTDIR}/ItemNode.o: ItemNode.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ItemNode.o ItemNode.cpp
+
+${OBJECTDIR}/User.o: User.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/User.o User.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

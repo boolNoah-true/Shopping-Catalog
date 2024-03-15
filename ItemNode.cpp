@@ -4,19 +4,12 @@
  */
 
 /* 
- * File:   Database.cpp
+ * File:   ItemNode.cpp
  * Author: NoahP
  * 
- * Created on March 15, 2024, 11:43 AM
+ * Created on March 15, 2024, 12:37 PM
  */
 
-#include "Database.h"
-#include <iostream>
-
-using namespace std;
-Database::Database() {}
-Database::Database(const Database& orig) {}
-Database::~Database() {}
-
+#include "ItemNode.h"
 
 

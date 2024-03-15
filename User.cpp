@@ -4,19 +4,20 @@
  */
 
 /* 
- * File:   Database.cpp
+ * File:   User.cpp
  * Author: NoahP
  * 
- * Created on March 15, 2024, 11:43 AM
+ * Created on March 15, 2024, 12:22 PM
  */
 
-#include "Database.h"
-#include <iostream>
+#include "User.h"
 
-using namespace std;
-Database::Database() {}
-Database::Database(const Database& orig) {}
-Database::~Database() {}
+User::User() {
+}
 
+User::User(const User& orig) {
+}
 
+User::~User() {
+}
 

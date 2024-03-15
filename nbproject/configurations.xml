@@ -5,6 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Database.h</itemPath>
+      <itemPath>Item.h</itemPath>
+      <itemPath>ItemNode.h</itemPath>
+      <itemPath>User.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,6 +17,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Database.cpp</itemPath>
+      <itemPath>Item.cpp</itemPath>
+      <itemPath>ItemNode.cpp</itemPath>
+      <itemPath>User.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -42,6 +48,18 @@
       </item>
       <item path="Database.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Item.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Item.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ItemNode.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ItemNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="User.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="User.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -68,6 +86,18 @@
       <item path="Database.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Database.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Item.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Item.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ItemNode.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ItemNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="User.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="User.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

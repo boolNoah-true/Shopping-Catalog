@@ -1,2 +1,2 @@
-build/Debug/Cygwin-Windows/main.o: main.cpp Database.h
-Database.h:
+build/Debug/Cygwin-Windows/main.o: main.cpp Item.h
+Item.h:
