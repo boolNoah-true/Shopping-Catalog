@@ -15,10 +15,12 @@
 
 class User {
 public:
-    User();
-    User(const User& orig);
-    virtual ~User();
+    explicit User(const std::string& n);
+    
+    
 private:
+    std::string name;
+    
 
 };
 

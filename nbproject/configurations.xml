@@ -4,9 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Cart.h</itemPath>
       <itemPath>Database.h</itemPath>
       <itemPath>Item.h</itemPath>
-      <itemPath>ItemNode.h</itemPath>
+      <itemPath>Node.h</itemPath>
+      <itemPath>Store.h</itemPath>
       <itemPath>User.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -16,9 +18,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Cart.cpp</itemPath>
       <itemPath>Database.cpp</itemPath>
       <itemPath>Item.cpp</itemPath>
-      <itemPath>ItemNode.cpp</itemPath>
+      <itemPath>Node.cpp</itemPath>
+      <itemPath>Store.cpp</itemPath>
       <itemPath>User.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -44,6 +48,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Cart.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Cart.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Database.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Database.h" ex="false" tool="3" flavor2="0">
@@ -52,9 +60,13 @@
       </item>
       <item path="Item.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ItemNode.cpp" ex="false" tool="0" flavor2="0">
+      <item path="Node.cpp" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="ItemNode.h" ex="false" tool="3" flavor2="0">
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Store.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Store.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="User.cpp" ex="false" tool="0" flavor2="0">
       </item>
@@ -83,6 +95,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Cart.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Cart.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Database.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Database.h" ex="false" tool="3" flavor2="0">
@@ -91,9 +107,13 @@
       </item>
       <item path="Item.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ItemNode.cpp" ex="false" tool="0" flavor2="0">
+      <item path="Node.cpp" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="ItemNode.h" ex="false" tool="3" flavor2="0">
+      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Store.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Store.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="User.cpp" ex="false" tool="0" flavor2="0">
       </item>

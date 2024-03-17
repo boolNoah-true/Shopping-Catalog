@@ -4,24 +4,21 @@
  */
 
 /* 
- * File:   ItemNode.h
+ * File:   Store.h
  * Author: NoahP
  *
- * Created on March 15, 2024, 12:37 PM
+ * Created on March 16, 2024, 10:02 PM
  */
 
-#ifndef ITEMNODE_H
-#define ITEMNODE_H
+#ifndef STORE_H
+#define STORE_H
 
-class ItemNode {
+class Store {
 public:
 
-    
-    
-    
 private:
 
 };
 
-#endif /* ITEMNODE_H */
+#endif /* STORE_H */
 

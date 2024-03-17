@@ -4,14 +4,12 @@
  */
 
 /* 
- * File:   User.cpp
+ * File:   Store.cpp
  * Author: NoahP
  * 
- * Created on March 15, 2024, 12:22 PM
+ * Created on March 16, 2024, 10:02 PM
  */
 
-#include "User.h"
+#include "Store.h"
 
-explicit User(const std::string& n) {
-    
 

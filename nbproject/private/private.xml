@@ -11,10 +11,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Item.h</file>
-            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/ItemNode.cpp</file>
-            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/main.cpp</file>
-            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Item.cpp</file>
-            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/ItemNode.h</file>
+            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Node.h</file>
+            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Database.h</file>
+            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Cart.h</file>
+            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/Store.h</file>
+            <file>file:/E:/CIS%2017B%20ASSIGNMENTS/Shopping%20Catalog/User.h</file>
         </group>
     </open-files>
 </project-private>
