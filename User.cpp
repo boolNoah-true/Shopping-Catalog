@@ -12,6 +12,5 @@
 
 #include "User.h"
 
-explicit User(const std::string& n) {
-    
+
 

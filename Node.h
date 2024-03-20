@@ -13,7 +13,8 @@
 class Node {
 public:
     Item* item;
-    User* user;
+    
+    //User* user;
     
     
 private:

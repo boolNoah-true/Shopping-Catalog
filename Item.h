@@ -10,7 +10,7 @@
 #include <string>
 class Item {
 public:
-    explicit Item(const std::string& n); //constructor declaration
+    Item(); //constructor declaration
     std::string getName() const; 
     std::string getInfo() const; 
     float getPrice() const;

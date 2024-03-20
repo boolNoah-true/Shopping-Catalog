@@ -12,7 +12,7 @@
 
 #include "Item.h"
 
-Item::Item(const std::string& n) : name(n), info(""), price(0.00), qnty(0){}
+Item::Item(){}
 
 std::string Item::getName() const {
     return name;

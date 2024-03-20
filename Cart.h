@@ -20,8 +20,7 @@ public:
     int size;
     
     Cart(Item* intialItems, int n);
-    Cart(const Cart & other);
-    Cart operatior = (const Cart & other);
+   
      ~Cart();
     
      

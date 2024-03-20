@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Item.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Store.o \
+	${OBJECTDIR}/UI.o \
 	${OBJECTDIR}/User.o \
 	${OBJECTDIR}/main.o
 
@@ -92,6 +93,11 @@ ${OBJECTDIR}/Store.o: Store.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Store.o Store.cpp
+
+${OBJECTDIR}/UI.o: UI.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/UI.o UI.cpp
 
 ${OBJECTDIR}/User.o: User.cpp
 	${MKDIR} -p ${OBJECTDIR}
