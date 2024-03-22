@@ -12,8 +12,12 @@
 
 class Node {
 public:
+    Node();
+    
     Item* item;
     
+    void setNItems(const& newNum);
+    int getNItems() const;
     //User* user;
     
     

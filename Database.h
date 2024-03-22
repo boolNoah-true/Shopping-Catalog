@@ -16,8 +16,14 @@
 class Database {
 public:
     Database();
-    Database(const Database& orig);
-    virtual ~Database();
+    
+    void readBin();
+    
+    void writeBin();
+    
+    
+    
+    
 private:
 
 };

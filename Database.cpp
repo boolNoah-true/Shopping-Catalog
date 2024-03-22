@@ -15,8 +15,10 @@
 
 using namespace std;
 Database::Database() {}
-Database::Database(const Database& orig) {}
-Database::~Database() {}
+
+void Database::readBin() {}
+
+void Database::writeBin() {}
 
 
 

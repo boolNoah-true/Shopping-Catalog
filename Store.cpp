@@ -13,3 +13,12 @@
 #include "Store.h"
 
 
+Store::Store(){};
+
+int Store::getInv() const{
+    return invSize;
+}
+
+void Store::setInventory(const& newInv) {
+    invSize = newInv;
+}

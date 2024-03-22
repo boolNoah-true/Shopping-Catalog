@@ -15,9 +15,16 @@
 
 class Store {
 public:
-
+    Store();
+    
+    void setInventory(const& newInv);
+    
+    int getInv() const;
+    
+    
 private:
-
+    int invSize = 0; // inventory size
+    
 };
 
 #endif /* STORE_H */
