@@ -10,12 +10,12 @@
 #include <iomanip>
 #include "Item.h"
 #include "UI.h"
-
+#include"Cart.h"
 
 int main (){
-    UI menu;
+   // UI menu;
     
-   menu.run();
+ //  menu.run();
  
     
     
@@ -40,6 +40,8 @@ int main (){
     std::string info;
     std:: string name;
     
+    
+    
     std::cout << "Enter item info here: " << std::endl;
     
     std::getline(std::cin, name);
@@ -48,18 +50,22 @@ int main (){
     std::cin.ignore();
     std::cin >> qnty;
     
+    Cart cart;
     Item item;
-    item.setName(name);
-    item.setInfo(info);
-    item.setPrice(price);
-    item.setQnty(qnty);
+    cart.addItem(&item, name, info, price, qnty);
     
-    std::cout << "Name: " << item.getName() << std::endl;
-    std::cout << "Description: "<< item.getInfo() << std::endl;
-    std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) <<item.getPrice() << std::endl;
-    std::cout << "Quantity: " << item.getQnty() << " left" << std::endl;
-    
-    
+//    Item item;
+//    item.setName(name);
+//    item.setInfo(info);
+//    item.setPrice(price);
+//    item.setQnty(qnty);
+//    
+//    std::cout << "Name: " << item.getName() << std::endl;
+//    std::cout << "Description: "<< item.getInfo() << std::endl;
+//    std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) <<item.getPrice() << std::endl;
+//    std::cout << "Quantity: " << item.getQnty() << " left" << std::endl;
+//    
+    cart.display(); // display function for displaying cart
     
     
     return 0;

@@ -13,4 +13,40 @@
 #include "User.h"
 
 
+User::User() {}
 
+
+
+void User::setUsrNme(const std::string& u) {
+    username = u;
+
+}
+
+void User::setPswrd(const std::string& p) {
+    password = p;
+
+}
+
+void User::setEmail(const std::string& e) {
+    email = e;
+
+}
+
+
+std::string User::getUsrNme() const {
+    
+    return username;
+    
+}
+
+std::string User::getPswrd() const {
+    
+    return password;
+    
+}
+
+std::string User::getEmail() const {
+    
+    return email;
+    
+}

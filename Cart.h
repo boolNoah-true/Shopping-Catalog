@@ -16,20 +16,23 @@
 
 class Cart {
 public:
-    Item* myItems; //aggregation
-    int size;
+
     
-    Cart(Item* intialItems, int n);
-   
-     ~Cart();
+    Cart();
+  ~Cart();
+  
+  void addItem(Item* item, const std::string& name, const std::string& info, const float price, const int qnty);
+ 
+  void display() const;
     
-     
-     
-     
-     
      
 private: 
-
+    Item** myItems;
+    int size;
+    int capacity;
+    
+    void increaseCapacity();
+    
 };
 
 #endif /* CART_H */

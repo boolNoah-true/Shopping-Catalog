@@ -12,4 +12,28 @@
 
 #include "Node.h"
 
+Node::Node() {}
 
+void Node::setNItems(const& newINum) {\
+     
+    nItems = newINum;
+    
+}
+
+int Node::getNItems() const {
+    
+    return nItems;
+    
+}
+
+void Node::setNUsers(const& newUNum) {
+    
+    nUsers = newUNum;
+    
+}
+
+int Node::getNUsers() const {
+    
+    return nUsers;
+    
+}

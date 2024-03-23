@@ -16,9 +16,14 @@ public:
     
     Item* item;
     
-    void setNItems(const& newNum);
+    void setNItems(const& newINum);
     int getNItems() const;
-    //User* user;
+    
+    User* user;
+    
+    void setNUsers(const& newUNum);
+    int getNUsers() const;
+    
     
     
 private:
