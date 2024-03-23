@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "UI.h"
 #include"Cart.h"
+#include "User.h"
 
 int main (){
    // UI menu;
@@ -50,9 +51,10 @@ int main (){
     std::cin.ignore();
     std::cin >> qnty;
     
-    Cart cart;
+    
     Item item;
-    cart.addItem(&item, name, info, price, qnty);
+    User user;
+    user.getCart().addItem(&item, name, info, price, qnty);
     
 //    Item item;
 //    item.setName(name);
@@ -65,7 +67,7 @@ int main (){
 //    std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) <<item.getPrice() << std::endl;
 //    std::cout << "Quantity: " << item.getQnty() << " left" << std::endl;
 //    
-    cart.display(); // display function for displaying cart
+    user.getCart().display(); // display function for displaying cart
     
     
     return 0;

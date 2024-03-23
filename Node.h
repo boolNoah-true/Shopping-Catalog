@@ -14,22 +14,28 @@ class Node {
 public:
     Node();
     
-    Item* item;
     
-    void setNItems(const& newINum);
+    
+    void setNItems(const int& newINum);
     int getNItems() const;
+    Item* itemPtr() const;
     
-    User* user;
+ 
     
-    void setNUsers(const& newUNum);
+    void setNUsers(const int& newUNum);
     int getNUsers() const;
+    User* getUPtr(int index) const;
     
     
     
 private:
+    Item* item;
+    User* user;
+    
     
     int nUsers;
     int nItems;
+    User* users = new User[nUsers];
 
 };
 

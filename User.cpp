@@ -13,9 +13,11 @@
 #include "User.h"
 
 
-User::User() {}
+User::User() : myCart() {}
 
-
+Cart& User::getCart() {
+    return myCart;
+}
 
 void User::setUsrNme(const std::string& u) {
     username = u;

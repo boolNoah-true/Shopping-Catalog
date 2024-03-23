@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Binary.o \
 	${OBJECTDIR}/Cart.o \
 	${OBJECTDIR}/Database.o \
 	${OBJECTDIR}/Item.o \
@@ -68,6 +69,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/shopping_catalog.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/shopping_catalog ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Binary.o: Binary.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Binary.o Binary.cpp
 
 ${OBJECTDIR}/Cart.o: Cart.cpp
 	${MKDIR} -p ${OBJECTDIR}

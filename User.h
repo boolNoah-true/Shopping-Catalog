@@ -14,21 +14,23 @@
 #ifndef USER_H
 #define USER_H
 
+#include "Cart.h"
+
 #include <string>
 
 class User {
 public:
     User(); // constructor
 
-    void setUsrNme(const std::string&);
-    void setPswrd(const std::string&);
-    void setEmail(const std::string&);
+    void setUsrNme(const std::string& u);
+    void setPswrd(const std::string& p);
+    void setEmail(const std::string& e);
     
     std::string getUsrNme() const;
     std::string getPswrd() const;
     std::string getEmail() const;
     
-    
+    Cart& getCart();
     
     
 private:
@@ -37,6 +39,7 @@ private:
     std::string password;
     std::string email;
     
+    Cart myCart;
 };
 
 #endif /* USER_H */
