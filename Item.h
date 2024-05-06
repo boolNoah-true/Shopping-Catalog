@@ -8,7 +8,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
-class Item {
+#include "Database.h"
+
+class Item : public Serializable  {
 public:
     Item(); //constructor declaration
     std::string getName() const; 
@@ -20,6 +22,8 @@ public:
     void setPrice(const float& newPrice);
     void setQnty(const int& newQnty);
     
+    Datastream Serialize();
+    void Load(Datastream *);
     
 private:
     

@@ -15,10 +15,12 @@
 #define USER_H
 
 #include "Cart.h"
+#include "Database.h"
+
 
 #include <string>
 
-class User {
+class User : public Serializable {
 public:
     User(); // constructor
 
@@ -31,6 +33,9 @@ public:
     std::string getEmail() const;
     
     Cart& getCart();
+    
+    Datastream Serialize();
+    void Load(Datastream *);
     
     
 private:

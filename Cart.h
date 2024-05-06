@@ -12,9 +12,13 @@
 
 #ifndef CART_H
 #define CART_H
-#include "Item.h"
 
-class Cart {
+#include <string>
+
+#include "Item.h"
+#include "Database.h"
+
+class Cart : public Serializable  {
 public:
 
     
@@ -24,6 +28,9 @@ public:
   void addItem(Item* item, const std::string& name, const std::string& info, const float price, const int qnty);
  
   void display() const;
+  
+  Datastream Serialize();
+  void Load(Datastream *);
     
      
 private: 
@@ -32,7 +39,7 @@ private:
     int capacity;
     
     void increaseCapacity();
-    
+    Datastream ReadItemDataStream(const char * buffer, unsigned long& cursor);
 };
 
 #endif /* CART_H */

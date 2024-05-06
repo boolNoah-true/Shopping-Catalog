@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Binary.h</itemPath>
       <itemPath>Cart.h</itemPath>
       <itemPath>Database.h</itemPath>
       <itemPath>Item.h</itemPath>
@@ -20,7 +19,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>Binary.cpp</itemPath>
       <itemPath>Cart.cpp</itemPath>
       <itemPath>Database.cpp</itemPath>
       <itemPath>Item.cpp</itemPath>
@@ -52,10 +50,6 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Binary.cpp" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Binary.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Cart.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Cart.h" ex="false" tool="3" flavor2="0">
@@ -107,10 +101,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Binary.cpp" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Binary.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Cart.cpp" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Cart.h" ex="false" tool="3" flavor2="0">

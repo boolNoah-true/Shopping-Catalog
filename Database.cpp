@@ -11,14 +11,136 @@
  */
 
 #include "Database.h"
+#include "User.h"
+#include <fstream>
 #include <iostream>
+#include <string>
 
-using namespace std;
-Database::Database() {}
+using std::ios;
 
-void Database::readBin() {}
+Datastream::~Datastream() { delete[] this->data; }
 
-void Database::writeBin() {}
+void Serializable::WriteToBuf(char *buffer, const char *data, unsigned long size, unsigned long &cursor){
+    for(int i=0; i < size; i++){
+        buffer[cursor++] = data[i];
+    }
+}
+
+void Serializable::ReadFromBuf(const char *buffer, char *dst, unsigned long size, unsigned long &cursor){
+    for(int i=0; i < size; i++){
+        dst[i] = buffer[cursor++];
+    }
+}
 
 
 
+Database::Database(std::string FileName) {
+  this->FileName = FileName;
+  this->UserFile.open(FileName, ios::in | ios::binary);
+
+  if (!UserFile.is_open()) {
+    // ask if new database needs to be created with file name
+    throw std::string("ERROR: Database could not be loaded!");
+  }
+
+  // Logic For Loading Database all at once
+  UserFile.read((char *)&nRecords, sizeof(nRecords));
+  Records = new User[nRecords];
+  
+  // change made here for utilizing Load
+  for (int i = 0; i < nRecords; i++) {
+    Datastream userDataStream = ReadUserDatastream();
+    Records[i].Load(&userDataStream);
+  }
+  UserFile.close();
+}
+
+Database::~Database() {
+  delete[] Records;
+}
+
+User *Database::FetchUser(std::string UserName) {
+  for (int i = 0; i < nRecords; i++) {
+    if (Records[i].getUsrNme() == UserName)
+        return &Records[i];
+  }
+  return nullptr;
+}
+
+bool Database::ValidateUser(std::string UserName, std::string Password) {
+  User *temp = FetchUser(UserName);
+  
+  if (!temp || Password != temp->getPswrd()) return false;
+
+  return true;
+}
+
+// write all users in the database function
+void Database::WriteRecords() {
+    if (!UserFile.is_open()) {
+        UserFile.open(FileName, std::ios::out | std::ios::binary | std::ios::trunc);
+        if (!UserFile) {
+            throw std::runtime_error("File could not be opened for writing.");
+        }
+    }
+
+    // Write the number of records first
+    UserFile.write(reinterpret_cast<const char *>(&nRecords), sizeof(nRecords));
+
+    // Write each user's data
+    for (int i = 0; i < nRecords; ++i) {
+        Datastream userStream = Records[i].Serialize();
+        UserFile.write(userStream.data, userStream.size);
+    }
+
+    UserFile.close();
+}
+
+
+// function for reading and returning user datastream from file
+Datastream Database::ReadUserDatastream() {
+
+  // Read the size of the next user record.
+  long recordSize = 0;
+  UserFile.read(reinterpret_cast<char *>(&recordSize), sizeof(recordSize));
+
+  if (UserFile.fail()) {
+    throw std::runtime_error("Failed to read record size.");
+  }
+
+  // Allocate buffer for user data.
+  char *buffer = new char[recordSize];
+
+  // Read the user record data based on the size
+  UserFile.read(buffer, recordSize);
+
+  // Check if read was successful
+  if (UserFile.fail()) {
+    delete[] buffer;
+    throw std::runtime_error("Failed to read user data.");
+  }
+
+  return Datastream(buffer, recordSize);
+}
+
+// Function for Admin to Edit User Data
+//void Database::EditUser(std::string name, std::string Username, std::string password, User *user){
+//    if(!user)return;
+//    
+//    if(name != "") user->setName(name);
+//    if(Username != "") user->setUserName(Username);
+//    if(password != "") user->setPassword(password);
+//}
+
+//void Database::addUser(User newUser){
+//    User *temp = new User[this->nRecords + 1];
+//    
+//    for(int i=0; i < this->nRecords; i++){
+//        temp[i] = Records[i];
+//    }
+//    temp[nRecords] = newUser;
+//    
+//    delete []Records;
+//    this->Records = temp;
+//    nRecords++;
+//}
