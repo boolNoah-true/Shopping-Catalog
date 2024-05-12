@@ -40,7 +40,7 @@ Database::Database(std::string FileName) {
 
   if (!UserFile.is_open()) {
     // ask if new database needs to be created with file name
-    throw std::string("ERROR: Database could not be loaded!");
+    //throw std::string("ERROR: Database could not be loaded!");
   }
 
   // Logic For Loading Database all at once
@@ -132,15 +132,15 @@ Datastream Database::ReadUserDatastream() {
 //    if(password != "") user->setPassword(password);
 //}
 
-//void Database::addUser(User newUser){
-//    User *temp = new User[this->nRecords + 1];
-//    
-//    for(int i=0; i < this->nRecords; i++){
-//        temp[i] = Records[i];
-//    }
-//    temp[nRecords] = newUser;
-//    
-//    delete []Records;
-//    this->Records = temp;
-//    nRecords++;
-//}
+void Database::addUser(User newUser){
+   User *temp = new User[this->nRecords + 1];
+   
+   for(int i=0; i < this->nRecords; i++){
+       temp[i] = Records[i];
+   }
+   temp[nRecords] = newUser;
+   
+   delete []Records;
+   this->Records = temp;
+   nRecords++;
+}

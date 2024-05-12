@@ -12,49 +12,39 @@
 #include "UI.h"
 #include"Cart.h"
 #include "User.h"
+#include "Database.h"
+#include "Test.h"
 
 int main (){
    // UI menu;
     
- //  menu.run();
- 
+ //  menu.run();   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    Test test;
+    test.run();
     
     
     //TODO 
     //Make this section a part of the admin class later on
-    int qnty = 0;
-    float price = 0;
-    std::string info;
-    std:: string name;
+    // int qnty = 0;
+    // float price = 0;
+    // std::string info;
+    // std:: string name;
     
     
     
-    std::cout << "Enter item info here: " << std::endl;
+    // std::cout << "Enter item info here: " << std::endl;
     
-    std::getline(std::cin, name);
-    std::getline(std::cin, info);
-    std:: cin >> price;
-    std::cin.ignore();
-    std::cin >> qnty;
+    // std::getline(std::cin, name);
+    // std::getline(std::cin, info);
+    // std:: cin >> price;
+    // std::cin.ignore();
+    // std::cin >> qnty;
     
     
-    Item item;
-    User user;
-    user.getCart().addItem(&item, name, info, price, qnty);
+    // Item item;
+    // User user;
+    // user.getCart().addItem(&item, name, info, price, qnty);
     
     
     
@@ -69,7 +59,7 @@ int main (){
 //    std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) <<item.getPrice() << std::endl;
 //    std::cout << "Quantity: " << item.getQnty() << " left" << std::endl;
 //    
-    user.getCart().display(); // display function for displaying cart
+    // user.getCart().display(); // display function for displaying cart
     
     
     return 0;

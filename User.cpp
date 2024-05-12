@@ -64,36 +64,34 @@ Datastream User::Serialize()  {
     unsigned long cartSize = cartStream.size;
 
     // Calculate total size
-    unsigned long recordSize = sizeof(usernameSize) + usernameSize +
-                               sizeof(passwordSize) + passwordSize +
-                               sizeof(emailSize) + emailSize +
-                               cartSize;
+    unsigned long recordSize = usernameSize + passwordSize + emailSize + cartSize + 3 * sizeof(unsigned long);
 
     // Create buffer to hold all data
     char *buffer = new char[recordSize];
-    unsigned long cursor = 0;
+    unsigned long cursor = 0L;
 
-    // Write username
-    WriteToBuf(buffer, (const char *)&usernameSize, sizeof(usernameSize), cursor);
+    WriteToBuf(buffer, (const char *)&recordSize, sizeof(unsigned long), cursor);
+    WriteToBuf(buffer, (const char *)&usernameSize, sizeof(unsigned long), cursor);
+    WriteToBuf(buffer, (const char *)&passwordSize, sizeof(unsigned long), cursor);
+    WriteToBuf(buffer, (const char *)&emailSize, sizeof(unsigned long), cursor);
+    
+
+
     WriteToBuf(buffer, username.c_str(), usernameSize, cursor);
-
-    // Write password
-    WriteToBuf(buffer, (const char *)&passwordSize, sizeof(passwordSize), cursor);
     WriteToBuf(buffer, password.c_str(), passwordSize, cursor);
-
-    // Write email
-    WriteToBuf(buffer, (const char *)&emailSize, sizeof(emailSize), cursor);
     WriteToBuf(buffer, email.c_str(), emailSize, cursor);
-
-    // Write cart data
     WriteToBuf(buffer, cartStream.data, cartStream.size, cursor);
+
+    
+    
 
     return Datastream(buffer, recordSize);
 }
 
-void User::Load(Datastream * data) {
-    unsigned long cursor = 0;
-    const char* buffer = dataStream.data;
+
+void User::Load(Datastream *data) {
+    unsigned long cursor = 0L;
+    const char* buffer = (const char *)data->data;
 
     // Read username
     unsigned long usernameSize = 0;
@@ -123,6 +121,7 @@ void User::Load(Datastream * data) {
     delete[] emailBuffer;
 
     // Read the cart information
-    Datastream cartDataStream(buffer + cursor, dataStream.size - cursor);
-    myCart.Load(cartDataStream);
+    unsigned long remainingSize = data->size - cursor;
+    Datastream cartDataStream(const_cast<char*>(buffer + cursor), remainingSize);
+    myCart.Load(&cartDataStream);
 }

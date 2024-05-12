@@ -28,6 +28,8 @@ public:
     void setPswrd(const std::string& p);
     void setEmail(const std::string& e);
     
+
+
     std::string getUsrNme() const;
     std::string getPswrd() const;
     std::string getEmail() const;
@@ -45,6 +47,7 @@ private:
     std::string email;
     
     Cart myCart;
+    Datastream ReadCartDataStream(const char* buffer, unsigned long& cursor, unsigned long remainingSize);
 };
 
 #endif /* USER_H */

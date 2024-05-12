@@ -16,7 +16,7 @@ Item::Item(){}
 
 std::string Item::getName() const {
     return name;
-}
+} 
 
 std::string Item::getInfo() const {
     return info;
