@@ -14,13 +14,21 @@
 #ifndef UI_H
 #define UI_H
 
+#include"Database.h"
+
 class UI {
 public:
-    UI();
+    UI(std::string filename);
+    ~UI();
     void run();
     void login();
-    void regstr();  // Assuming "regstr" is a typo for "register"
-    // ... other members and functions ...
+    void regstr();  
+    void storeFront();
+
+private:
+
+Database* db;
+    
 };
 
 #endif /* UI_H */

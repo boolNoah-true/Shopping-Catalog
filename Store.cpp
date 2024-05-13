@@ -13,12 +13,15 @@
 #include "Store.h"
 
 
-Store::Store(){};
+Store::Store() : invSize(0)
+{
+    storeItems = new Item[10];
+}
 
 int Store::getInv() const{
     return invSize;
 }
 
-void Store::setInventory(const& newInv) {
+void Store::setInventory(const int& newInv) {
     invSize = newInv;
 }

@@ -15,12 +15,64 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using std::ios;
 
-Datastream::~Datastream() { delete[] this->data; }
+    
+
+    // Destructor
+    Datastream::~Datastream() {
+        std::cout << "Deleting Datastream with data pointer: " << static_cast<void*>(data) << std::endl;
+        
+        
+        delete[] data;
+        data = nullptr;
+        std::cout << "Deleted successfully" << std::endl;
+        
+        
+    }
+
+    // Copy constructor
+    Datastream::Datastream(const Datastream& other) : size(other.size) {
+        data = new char[size];
+        std::copy(other.data, other.data + size, data);
+    }
+
+    // Copy assignment operator
+    Datastream& Datastream::operator=(const Datastream& other) {
+        if (this != &other) {
+            delete[] data;
+            data=nullptr;
+            size = other.size;
+            data = new char[size];
+            std::copy(other.data, other.data + size, data);
+        }
+        return *this;
+    }
+
+    // Move constructor
+    Datastream::Datastream(Datastream&& other) noexcept : data(other.data), size(other.size) {
+        other.data = nullptr;
+        other.size = 0;
+    }
+
+    // Move assignment operator
+    Datastream& Datastream::operator=(Datastream&& other) noexcept {
+        if (this != &other) {
+            delete[] data;
+            data = nullptr;
+            data = other.data;
+            size = other.size;
+            other.data = nullptr;
+            other.size = 0;
+        }
+        return *this;
+    }
+
 
 void Serializable::WriteToBuf(char *buffer, const char *data, unsigned long size, unsigned long &cursor){
+    
     for(int i=0; i < size; i++){
         buffer[cursor++] = data[i];
     }
@@ -35,6 +87,7 @@ void Serializable::ReadFromBuf(const char *buffer, char *dst, unsigned long size
 
 
 Database::Database(std::string FileName) {
+  std::cout << "run" << std::endl;
   this->FileName = FileName;
   this->UserFile.open(FileName, ios::in | ios::binary);
 
@@ -77,29 +130,40 @@ bool Database::ValidateUser(std::string UserName, std::string Password) {
 
 // write all users in the database function
 void Database::WriteRecords() {
+    // Open the file only when needed
     if (!UserFile.is_open()) {
         UserFile.open(FileName, std::ios::out | std::ios::binary | std::ios::trunc);
         if (!UserFile) {
-            throw std::runtime_error("File could not be opened for writing.");
+            std::cerr << "Error: Unable to open file for writing: " << FileName << std::endl;
+            return;  // Exit the function if file cannot be opened
         }
     }
 
     // Write the number of records first
     UserFile.write(reinterpret_cast<const char *>(&nRecords), sizeof(nRecords));
+    if (UserFile.fail()) {
+        std::cerr << "Error: Failed to write the number of records to " << FileName << std::endl;
+        UserFile.close();
+        return;
+    }
 
-    // Write each user's data
+    // Write each user's serialized data
     for (int i = 0; i < nRecords; ++i) {
         Datastream userStream = Records[i].Serialize();
         UserFile.write(userStream.data, userStream.size);
+        if (UserFile.fail()) {
+            std::cerr << "Error: Failed to write user data for record " << i << " to " << FileName << std::endl;
+            break;  // Break the loop on write failure
+        }
     }
 
-    UserFile.close();
+    UserFile.close();  // Always close the file
 }
 
 
 // function for reading and returning user datastream from file
 Datastream Database::ReadUserDatastream() {
-
+  std::cout << "ReadUserDataStream" << std::endl;
   // Read the size of the next user record.
   long recordSize = 0;
   UserFile.read(reinterpret_cast<char *>(&recordSize), sizeof(recordSize));
@@ -117,7 +181,7 @@ Datastream Database::ReadUserDatastream() {
   // Check if read was successful
   if (UserFile.fail()) {
     delete[] buffer;
-    throw std::runtime_error("Failed to read user data.");
+    //throw std::runtime_error("Failed to read user data.");
   }
 
   return Datastream(buffer, recordSize);
@@ -125,22 +189,30 @@ Datastream Database::ReadUserDatastream() {
 
 // Function for Admin to Edit User Data
 //void Database::EditUser(std::string name, std::string Username, std::string password, User *user){
-//    if(!user)return;
-//    
-//    if(name != "") user->setName(name);
-//    if(Username != "") user->setUserName(Username);
-//    if(password != "") user->setPassword(password);
+//   if(!user)return;
+//   
+//   if(name != "") user->setName(name);
+//   if(Username != "") user->setUserName(Username);
+//   if(password != "") user->setPassword(password);
 //}
 
-void Database::addUser(User newUser){
-   User *temp = new User[this->nRecords + 1];
-   
-   for(int i=0; i < this->nRecords; i++){
-       temp[i] = Records[i];
-   }
-   temp[nRecords] = newUser;
-   
-   delete []Records;
-   this->Records = temp;
-   nRecords++;
+void Database::addUser(const User& newUser) {
+    
+    User *temp = new (std::nothrow) User[nRecords + 1];  
+    if (!temp) {
+        std::cerr << "Error: Memory allocation failed when trying to add new user." << std::endl;
+        return;  
+    }
+
+    
+    std::copy(Records, Records + nRecords, temp);
+
+    
+    temp[nRecords] = newUser;
+
+    
+    delete[] Records;
+    Records = temp;
+
+    nRecords++;
 }

@@ -12,7 +12,22 @@
 
 #include "Item.h"
 
-Item::Item(){}
+#include <iostream>
+
+Item::Item() {
+    name = '\0';
+    info = '\0';
+    price = 0.0;
+    qnty = 0;
+}
+
+
+Item::Item(std::string name, std::string info, float price, int qnty){
+    this->name = name;
+    this->info = info;
+    this->price = price;
+    this->qnty = qnty;
+}
 
 std::string Item::getName() const {
     return name;
@@ -47,6 +62,7 @@ void Item::setQnty(const int& newQnty) {
 }
 
 void Item::Load(Datastream *data){
+    std::cout << "Item Load" << std::endl;
     unsigned long nameSize;
     unsigned long infoSize;
     
@@ -70,9 +86,6 @@ void Item::Load(Datastream *data){
     this->info = std::string((const char *)temp);
     delete []temp;
 
-
-    
-    
     
     ReadFromBuf(buffer, (char *)&this->price, sizeof(float), cursor);
     ReadFromBuf(buffer, (char *)&this->qnty, sizeof(int), cursor);
@@ -82,12 +95,27 @@ void Item::Load(Datastream *data){
 
 
 Datastream Item::Serialize(){
+    std::cout << "serialize item" << std::endl;
     unsigned long nameSize = name.length();
     unsigned long infoSize = info.length();
+    std::cout << "Item Serialize Name Size "<< nameSize << std::endl;
+    std::cout << "Item Serialize Name  "<< name << std::endl;
+    std::cout << "Item Serialize Info Size "<< infoSize << std::endl;
+    std::cout << "Item Serialize Info "<< info << std::endl;
+    std::cout << "Item Serialize 2 times unsigned long "<< sizeof(unsigned long) << std::endl;
+    std::cout << "Item Serialize Int size "<< sizeof(int) << std::endl;
+    std::cout << "Item Serialize Float Size "<< sizeof(float) << std::endl;
+
+    
     unsigned long cursor = 0L;
-    unsigned long recordSize = nameSize + infoSize + 2 * sizeof(unsigned long) + 2 * sizeof(int);
+    unsigned long recordSize = nameSize + infoSize + 2 * sizeof(unsigned long) + sizeof(int) + sizeof(float);
     char *buffer = new char[recordSize + sizeof(unsigned long)];
     
+    std::cout << "Record SIZE mutha fuycka: " << recordSize + sizeof(unsigned long) << std::endl;
+      
+    
+
+
     WriteToBuf(buffer, (const char *)&recordSize, sizeof(unsigned long), cursor);
     WriteToBuf(buffer, (const char *)&nameSize, sizeof(unsigned long), cursor);
     WriteToBuf(buffer, (const char *)&infoSize, sizeof(unsigned long), cursor);
@@ -100,6 +128,7 @@ Datastream Item::Serialize(){
    
 
      Datastream data(buffer, recordSize + sizeof(unsigned long));
-     
+
+std::cout << "waaaahoooooo" << std::endl;
      return data;
 }

@@ -11,13 +11,21 @@
  */
 
 #include "UI.h"
-
+#include "Database.h"
+#include "User.h"
 
 
 
 #include <iostream>
+#include <String>
 
-UI::UI() {}
+UI::UI(std::string filename) {
+   db = new Database(filename); 
+}
+
+UI::~UI() {
+    delete db;
+}
 
 void UI::run() {
     
@@ -46,17 +54,37 @@ void UI::run() {
 }
 
 void UI::login() {
-    
+    std::string userName, passWord;
+
     std::cout << "Enter FROST username and password:" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "Username: " << std::endl;
     std::cout << "Password: " << std::endl;
+
+    db->ValidateUser(userName, passWord);
+
 }
 
 void UI::regstr() {
+    std::string userName, passWord, email;
+    User newUser;
     std::cout << "Sign up with username, password and email" <<std::endl;
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "Username: " << std::endl;
+    std::cin >> userName;
+    newUser.setUsrNme(userName);
     std::cout << "Password: " << std::endl;
+    std::cin >> passWord;
+    newUser.setPswrd(passWord);
     std::cout <<"Email: " << std::endl;
+    std::cin >> email;
+    newUser.setEmail(email);
+
+    db->addUser(newUser);
+    db->WriteRecords();
+}
+
+void UI::storeFront() {
+    
+
 }

@@ -25,16 +25,18 @@ public:
     Cart();
   ~Cart();
   
-  void addItem(Item* item, const std::string& name, const std::string& info, const float price, const int qnty);
+  void addItem(const Item& newItem);
  
   void display() const;
   
+  int getSize() const {return size;}
+
   Datastream Serialize();
   void Load(Datastream *);
     
      
 private: 
-    Item** myItems;
+    Item* myItems;
     int size;
     int capacity;
     

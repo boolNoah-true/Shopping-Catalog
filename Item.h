@@ -12,7 +12,8 @@
 
 class Item : public Serializable  {
 public:
-    Item(); //constructor declaration
+    Item();
+    Item(std::string name, std::string info, float price, int qnty); //constructor declaration
     std::string getName() const; 
     std::string getInfo() const; 
     float getPrice() const;
@@ -27,8 +28,8 @@ public:
     
 private:
     
-    std::string name;
-    std::string info;    // description of item
+    std::string name = "";
+    std::string info = "";    // description of item
     float price;
     int qnty; //quantity
 

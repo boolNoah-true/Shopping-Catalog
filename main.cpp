@@ -8,6 +8,8 @@
  */
 #include <iostream>
 #include <iomanip>
+#include <cassert>
+#include <fstream>
 #include "Item.h"
 #include "UI.h"
 #include"Cart.h"
@@ -15,53 +17,61 @@
 #include "Database.h"
 #include "Test.h"
 
-int main (){
-   // UI menu;
+using namespace std;
+
+
+int main() {
+
+        UI menu("userdata.bin");
+
+        menu.run();
+
+
+
+    // Database db("Test2.bin");
+    // //Create a user
+    // User testUser;
+    // testUser.setUsrNme("TestUser");
+    // testUser.setPswrd("123456");
+    // testUser.setEmail("test@example.com");
+
     
- //  menu.run();   
-    
-    Test test;
-    test.run();
-    
-    
-    //TODO 
-    //Make this section a part of the admin class later on
-    // int qnty = 0;
-    // float price = 0;
-    // std::string info;
-    // std:: string name;
-    
-    
-    
-    // std::cout << "Enter item info here: " << std::endl;
-    
-    // std::getline(std::cin, name);
-    // std::getline(std::cin, info);
-    // std:: cin >> price;
-    // std::cin.ignore();
-    // std::cin >> qnty;
-    
-    
-    // Item item;
-    // User user;
-    // user.getCart().addItem(&item, name, info, price, qnty);
-    
-    
-    
-//    Item item;
-//    item.setName(name);
-//    item.setInfo(info);
-//    item.setPrice(price);
-//    item.setQnty(qnty);
-//    
-//    std::cout << "Name: " << item.getName() << std::endl;
-//    std::cout << "Description: "<< item.getInfo() << std::endl;
-//    std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) <<item.getPrice() << std::endl;
-//    std::cout << "Quantity: " << item.getQnty() << " left" << std::endl;
-//    
-    // user.getCart().display(); // display function for displaying cart
-    
-    
+
+    // // Assuming Cart and Item are already included and set up in User
+    // Item testItem("Example Item", "Description of the item", 99.99, 10);
+    // testUser.getCart().addItem(testItem);
+    // Item testItem2("Example Item2", "Description of the item3", 99.99, 10);
+    // testUser.getCart().addItem(testItem);
+    // Item testItem3("Example Item2", "Description of the item3", 99.99, 10);
+    // testUser.getCart().addItem(testItem);
+
+    // db.addUser(testUser);
+    // db.WriteRecords();
+    // User* user = db.FetchUser("testUser");
+
+    // cout << user->getEmail();
+
+    // //Serialize the user
+    // Datastream userData = testUser.Serialize();
+
+    // // Write to binary file
+    // std::ofstream outFile("test.bin", std::ios::binary);
+    // if (!outFile) {
+    //     std::cerr << "Failed to open file for writing." << std::endl;
+    //     return 1;
+    // }
+
+    // outFile.write(userData.data, userData.size);
+    // if (!outFile) {
+    //     std::cerr << "Failed to write data to file." << std::endl;
+    //     outFile.close();
+    //     return 1;
+    // }
+
+    // outFile.close();
+    // std::cout << "Data successfully written to 'test.bin'" << std::endl;
+
     return 0;
 }
+
 

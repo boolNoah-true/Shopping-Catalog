@@ -9,72 +9,78 @@
 #include <iostream>
 #include <iomanip>
 
-Cart::Cart() : myItems(nullptr), size(0), capacity(0) {}
+using namespace std;
+
+Cart::Cart() : size(0), capacity(10)  {
+    myItems = new Item[capacity];
+}
 
 
 Cart::~Cart() {
     delete[] myItems;
+
 }
 
-void Cart::addItem(Item* item, const std::string& name, const std::string& info, const float price, const int qnty) {
+
+
+void Cart::addItem(const Item& newItem) {
     if (size >= capacity) {
         increaseCapacity();
     }
-    
-    myItems[size] = item;
-    myItems[size]->setName(name);
-    myItems[size]->setInfo(info);
-    myItems[size]->setPrice(price);
-    myItems[size]->setQnty(qnty);
-    size++;
-
+    myItems[size++] = newItem;
+    cout << "Item Array size: " << size << endl;
 }
 
 void Cart::display() const {
       std::cout << "Cart contains the following items: " << std::endl;
       
       for(int i=0; i < size; i++) {
-        std::cout << "Name: " << myItems[i]->getName() << std::endl;
-        std::cout << "Description: "<< myItems[i]->getInfo() << std::endl;
-        std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) << myItems[i]->getPrice() << std::endl;
-        std::cout << "Quantity: " << myItems[i]->getQnty() << " left" << std::endl;
+        std::cout << "Name: " << myItems[i].getName() <<  std::endl;
+        std::cout << "Description: "<< myItems[i].getInfo() << std::endl;
+        std::cout << "Price: " << "$" << std::fixed << std::setprecision(2) << myItems[i].getPrice() << std::endl;
+        std::cout << "Quantity: " << myItems[i].getQnty() << " left" << std::endl;
       }
   }
 
 void Cart::increaseCapacity() {
-    int newCapacity = (capacity == 0) ? 1 : capacity * 2;
-    Item** newItems = new Item*[newCapacity];
-    
+    capacity *=2;
+    Item* newItems = new Item[capacity];
+
     for(int i = 0; i < size; i++) {
         newItems[i] = myItems[i];
-        
+
     }
-    
+
     delete[] myItems;
     myItems = newItems;
-    capacity = newCapacity;
+    cout << "New cap: " << capacity << endl;
 }
 
 
 Datastream Cart::Serialize() {
     unsigned long totalItems = size;
     unsigned long totalSize = sizeof(totalItems);
+    //display();
 
-    
     for (int i = 0; i < size; ++i) {
-        totalSize += myItems[i]->Serialize().size;
-    }
+    std::cout << "Serializing item " << i <<  std::endl;
 
- 
+            totalSize += myItems[i].Serialize().size;
+
+}
+
+    std::cout << "This is the total size: " << totalSize << std::endl;
+
+
     char *buffer = new char[totalSize];
     unsigned long cursor = 0;
 
-    
-    WriteToBuf(buffer, (const char *)&totalItems, sizeof(totalItems), cursor);
 
-    
+    WriteToBuf(buffer, reinterpret_cast<const char*>(&totalItems), sizeof(totalItems), cursor);
+
+
     for (int i = 0; i < size; ++i) {
-        Datastream itemStream = myItems[i]->Serialize();
+        Datastream itemStream = myItems[i].Serialize();
         WriteToBuf(buffer, itemStream.data, itemStream.size, cursor);
     }
 
@@ -82,6 +88,7 @@ Datastream Cart::Serialize() {
 }
 
 Datastream Cart::ReadItemDataStream(const char * buffer, unsigned long& cursor) {
+    std::cout << "Cart Readids" << std::endl;
     unsigned long itemSize = 0;
     ReadFromBuf(buffer, reinterpret_cast<char*>(&itemSize), sizeof(itemSize), cursor);
     
@@ -92,23 +99,25 @@ Datastream Cart::ReadItemDataStream(const char * buffer, unsigned long& cursor) 
 }
 
 void Cart::Load(Datastream * data) {
+    std::cout << "Cart load" << std::endl;
     unsigned long cursor = 0;
-    const char* buffer = (const char *)data->data;
+    const char* buffer = data->data;
 
-    // Read the number of items in the cart
+
     unsigned long itemCount = 0;
-    ReadFromBuf(buffer, (char *)&itemCount, sizeof(unsigned long), cursor);
+    ReadFromBuf(buffer, reinterpret_cast<char*>(&itemCount), sizeof(itemCount), cursor);
 
-    // Allocate or reallocate myItems array
-    delete[] myItems; // Clear any previously allocated memory
-    myItems = new Item*[itemCount];
-    size = itemCount;
+
+    delete[] myItems;
+    myItems = new Item[itemCount];
     capacity = itemCount;
+    size = 0;
 
-    // Read and deserialize each item
+
     for (unsigned long i = 0; i < itemCount; ++i) {
-        Datastream itemDataStream = ReadItemDataStream(buffer, cursor); // Helper function to extract item data
-        myItems[i] = new Item();
-        myItems[i]->Load(&itemDataStream);
+        std::cout << "Loading item " << (i + 1) << std::endl;
+        Datastream itemDataStream = ReadItemDataStream(buffer, cursor);
+        myItems[i].Load(&itemDataStream);
+        size++;
     }
 }

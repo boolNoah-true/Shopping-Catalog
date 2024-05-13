@@ -13,18 +13,21 @@
 #ifndef STORE_H
 #define STORE_H
 
+#include "Item.h"
+
 class Store {
 public:
     Store();
     
-    void setInventory(const& newInv);
+    void setInventory(const int& newInv);
     
     int getInv() const;
     
     
+    
 private:
     int invSize = 0; // inventory size
-    
+    Item * storeItems;
 };
 
 #endif /* STORE_H */

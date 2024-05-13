@@ -15,6 +15,9 @@
 
 /* #include "User.h" */
 #include <fstream>
+#include <string>
+
+
 
 class User;
 class Cart;
@@ -22,9 +25,24 @@ class Item;
 
 class Datastream {
 public:
-    Datastream(char *data, long size) : data(data), size(size){}
-    Datastream(){}
+    
+
+    Datastream(char *data = nullptr, long size = 0) : data(data), size(size){}
+    // Destructor
     ~Datastream();
+
+    // Copy constructor
+    Datastream(const Datastream& other);
+
+    // Copy assignment operator
+    Datastream& operator=(const Datastream& other);
+
+    // Move constructor
+    Datastream(Datastream&& other) noexcept;
+
+    // Move assignment operator
+    Datastream& operator=(Datastream&& other) noexcept;
+
     char *data;
     long size;
 };
@@ -43,7 +61,7 @@ public:
     Database(std::string);	
     ~Database();
     bool ValidateUser(std::string, std::string);
-    void addUser(User);
+    void addUser(const User& newUser);
     void EditUser(std::string name = "", std::string Username = "", std::string password = "", User *user = nullptr);
     void WriteRecords();
     User *FetchUser(std::string);
