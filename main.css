@@ -1,9 +1,112 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : May 21, 2024, 1:54:00 AM
-    Author     : NoahP
-*/
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f5f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+html {
+    height: 100%;
+    margin : 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.navbar {
+    background-color: #0078d7;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.banner {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+}
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #0078d7;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.category {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    padding: 1rem;
+    width: calc(33% - 2rem);
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+.category:hover {
+    transform: scale(1.05);
+}
+
+.footer {
+
+    color: black;
+    text-align: center;
+    
+  
+  
+}
+
+.section {
+    text-align: center;
+}
+
 
