@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frost - Home</title>
+    <title>GHOST - Home</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <?php require 'db-initializer.php' ?>
+    
     <header class="navbar">
-        <h1>FROST</h1>
+        <div class = "container">
+            <img class="logo" src="Logo.webp">
+            <h1>GHOST</h1>
+        </div>
+        <div class="user">
+            <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+                echo '<span class="username"><a href="UserMenu.php">' . htmlspecialchars($_SESSION['username']) .  '</a></span>';
+            }
+            ?>
+            
+        </div>
     </header>
     <main>
         <section class="banner">
@@ -50,8 +64,11 @@
         </section>
     </main>
     <footer class = "footer">
-        <p>&copy; 2024 Frost. All rights reserved.</p>
+        <p>&copy; 2024 GHOST. All rights reserved.</p>
     </footer>
+    <audio id="submitSound" src="A.mp3" preload="auto"></audio>
+    
     <script src="script.js"></script>
+    
 </body>
 </html>

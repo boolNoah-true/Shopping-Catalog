@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'db-initializer.php';
 
 try {
@@ -13,18 +14,21 @@ try {
                 $Username = $_POST['Username'];
                 $optionsBcrypt = ['cost' => 10];
                 $Password = password_hash($_POST['Password'], PASSWORD_BCRYPT, $optionsBcrypt);
-                //$isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
+                
 
                 $stmt = $pdo->prepare('INSERT INTO entity_accounts (Username, Password) VALUES (:Username, :Password)');
                 $stmt->execute(['Username' => $Username, 'Password' => $Password]);
 
                 echo "<script>console.log('Sign-up successful!');</script>";
+                
+                
             } else {
                 echo "<script>console.log('Username or Password not set');</script>";
             }
         }
 
         if (isset($_POST['login'])) {
+            
             if (isset($_POST['Username']) && isset($_POST['Password'])) {
                 $Username = $_POST['Username'];
                 $Password = $_POST['Password'];
@@ -34,18 +38,21 @@ try {
                 $user = $stmt->fetch();
 
                 if ($user && password_verify($Password, $user['Password'])) {
+                    $_SESSION['username'] = $Username;
                     echo "<script>console.log('Login successful!');</script>";
                     if ($user['isAdmin']) {
                         echo "<script>console.log('Welcome, Admin!');</script>";
-                        header("Location: index.php");
+                        
+                        header("Location: IndexAdmin.php");
                         exit;
                     } else {
                         echo "<script>console.log('Welcome, User!');</script>";
+                        
                         header("Location: index.php");
                         exit;
                     }
                 } else {
-                    echo "Invalid Username or Password";
+                    echo "<h4>Invalid Username or Password</h4>";
                 }
             } else {
                 echo "<script>console.log('Username or Password not set');</script>";

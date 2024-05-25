@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 body {
             font-family: Arial, sans-serif;
-            background: #f0f4f8;
+            background: linear-gradient(to right, #2c2352, #000000);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,7 +17,7 @@ body {
             margin: 0;
         }
         .container {
-            background: #ffffff;
+            background: linear-gradient(to top, #141414, #0F0E13);
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -26,7 +26,8 @@ body {
         }
         .container h2 {
             margin-bottom: 20px;
-            color: #333;
+            
+            color: #ffffff;
         }
         .form-group {
             margin-bottom: 15px;
@@ -35,18 +36,18 @@ body {
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #666;
+            color: #ffffff;
         }
         .form-group input {
             width: calc(100% - 22px);
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 4px;
         }
         .btn {
             width: 100%;
             padding: 10px;
-            background: #007bff;
+            background: #2c2352;
             border: none;
             border-radius: 4px;
             color: #ffffff;
@@ -58,11 +59,47 @@ body {
         }
         .switch {
             margin-top: 20px;
+
+        }
+
+        .switch p {
+            color: #fff
         }
         .switch a {
-            color: #007bff;
+            color: #9481f3;
             text-decoration: none;
         }
         .switch a:hover {
             text-decoration: underline;
+        }
+
+        .img {
+            width: 200px;
+            height: 200px;
+            
+            border-radius: 50%;
+            
+        }
+        
+        h4 {
+            color: white;
+        }
+        
+         #loadingScreen {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            text-align: center;
+        }
+        #loadingSpinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
         }
